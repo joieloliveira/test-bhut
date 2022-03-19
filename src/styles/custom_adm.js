@@ -6,7 +6,7 @@ export const ConteinerCarro = styled.SafeAreaView`
     background-color: #520e5f
     flex-direction: column;
     margin-top: 40px;
-    height: 100%;
+    height: 96%;
 `;
 export const ImageLogo = styled.Image`
     width: 240px;
