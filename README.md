@@ -13,6 +13,9 @@ Criar o projeto com React Native usando expo
 Executar o projeto
 ### npm start 
 
+Leia o QR Code
+### vc precisa ter o app do expo go instalado no seu celular
+
 Para navegar entre as página
 ### npm install @react-navigation/native @react-navigation/native-stack
 
