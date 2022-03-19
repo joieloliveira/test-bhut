@@ -75,7 +75,7 @@ function Home() {
             <ConteinerCarro>
                 <ImageLogo source={require('../../../assets/img/images3.png')} />
                 <ModalCad />
-                <ScrollView style={{ display: "flex", width: "100%"}}>
+                <ScrollView style={{ display: "flex", width: "100%", height: "auto", marginBottom: 1}}>
                     {cars}
                 </ScrollView>
             </ConteinerCarro>
