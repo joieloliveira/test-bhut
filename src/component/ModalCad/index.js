@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 
-import { InputForm, BtnSubmitForm, TxtSubmitForm} from '../../styles/custom_adm';
+import { InputForm, BtnSubmitForm, TxtSubmitForm } from '../../styles/custom_adm';
 
 import api from '../../config/api';
+
+import { Context } from '../../pages/Home';
 
 const ModalCad = () => {
 
     const [modalVisible, setModalVisible] = useState(false);
+
+    const { setLoading } = useContext(Context);
 
     const [nome, setNome] = useState("");
     const [marca, setMarca] = useState("");
@@ -23,7 +27,7 @@ const ModalCad = () => {
             }
         };
 
-        await api.post('/cars', { title:nome, brand:marca, price:preco, age:ano }, headers)
+        await api.post('/cars', { title: nome, brand: marca, price: preco, age: ano }, headers)
             .then((response) => {
                 console.log(response);
                 Alert.alert("Cadastrado com Sucesso");
@@ -34,7 +38,11 @@ const ModalCad = () => {
                     Alert.alert("Erro: Sem resposta do servidor");
                 }
             });
-
+        setNome("")
+        setMarca("")
+        setPreco("")
+        setAno("")
+        setLoading(true);
         setModalVisible(!modalVisible)
 
     }
@@ -68,12 +76,20 @@ const ModalCad = () => {
                             value={ano}
                             onChangeText={text => setAno(text)}
                         />
-                        <Pressable
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(!modalVisible)}
-                        >
-                            <Text onPress={addCarro} style={styles.textStyle}>CADASTRAR</Text>
-                        </Pressable>
+                        <View style={styles.viewBTN}>
+                            <Pressable
+                                style={[styles.button, styles.buttonClose]}
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
+                                <Text onPress={addCarro} style={styles.textStyle}>CADASTRAR</Text>
+                            </Pressable>
+                            <Pressable
+                                style={[styles.button, styles.buttonClose]}
+                                onPress={() => setModalVisible(!modalVisible)}
+                            >
+                                <Text style={styles.textStyle}>CANCELAR</Text>
+                            </Pressable>
+                        </View>
                     </View>
                 </View>
             </Modal>
@@ -116,6 +132,7 @@ const styles = StyleSheet.create({
     },
     buttonClose: {
         backgroundColor: "red",
+        margin: 10,
     },
     textStyle: {
         color: "white",
@@ -129,6 +146,12 @@ const styles = StyleSheet.create({
     },
     inputCad: {
         width: 300,
+    },
+    viewBTN: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "row",
     }
 });
 

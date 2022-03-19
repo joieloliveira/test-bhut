@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
-import Home from "./pages/Home";
+import {Home} from "./pages/Home";
 
 export default function Routes() {
     return (
