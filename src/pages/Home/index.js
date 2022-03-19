@@ -1,7 +1,7 @@
 import React, { useEffect, createContext, useState } from "react";
-import { View, ScrollView, Alert, Text } from "react-native";
+import { View, Alert, Text, ScrollView } from "react-native";
 
-import { ConteinerCarro, ImageCarro, ImageLogo, CardCarro, CardCarro_p } from '../../styles/custom_adm';
+import { ConteinerCarro, ImageCarro, ImageLogo, CardCarro, CardCarro_p, ScrollViewBox } from '../../styles/custom_adm';
 
 import ModalCad from '../../component/ModalCad';
 
@@ -52,7 +52,7 @@ function Home() {
     carsData.map((car) => {
         cars.push(
             <>
-                <Text>Toque no card para deletar</Text>
+                <Text style={{ marginLeft: 15}}>Toque no card para deletar</Text>
                 <CardCarro key={car._id} onPress={() => deletDado(car._id)}>
                     <View>
                         <CardCarro_p>Nome: {car.title}</CardCarro_p>
@@ -64,7 +64,7 @@ function Home() {
                 </CardCarro>
             </>
         )
-    })
+    })   
 
     useEffect(() => {
         getDados();
@@ -75,7 +75,9 @@ function Home() {
             <ConteinerCarro>
                 <ImageLogo source={require('../../../assets/img/images3.png')} />
                 <ModalCad />
-                {cars}
+                <ScrollView style={{ display: "flex", width: "100%"}}>
+                    {cars}
+                </ScrollView>
             </ConteinerCarro>
         </Context.Provider>
     )

@@ -52,3 +52,8 @@ export const InputForm = styled.TextInput`
     border-radius: 6px;
     padding: 10px;
 `;
+export const ScrollViewBox = styled.ScrollView`
+    display: flex;
+    align-items: center;
+    width: 100%;
+`;
